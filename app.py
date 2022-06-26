@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 
 
+
 picture = st.camera_input("Camera Input")
 
 def format_picture(picture):
