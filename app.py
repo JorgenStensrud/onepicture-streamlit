@@ -1,6 +1,4 @@
 import streamlit as st
-import pyheif
-import cv2
 import numpy as np
 
 
