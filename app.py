@@ -57,9 +57,9 @@ if picture:
     bytes_picture  = picture.getvalue()
     cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
     # faces = detect_face(picture)
-    faces = detect_face(picture)
-    st.write("Found {} faces!".format(len(faces)))
-    st.image(draw_rectange(picture, faces), use_column_width=True)
+    smiles = detect_smile(picture)
+    st.write("Found {} faces!".format(len(smiles)))
+    st.image(draw_rectange(picture, smiles), use_column_width=True)
     # for (x,y,w,h) in smile:
     #     cv2.rectangle(cv2_img, (x,y), (x+w, y+h), (255,0,0), 2)
     # st.image(cv2_img)
