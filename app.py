@@ -50,9 +50,9 @@ def detect_smile(picture):
 if picture:
     bytes_picture  = picture.getvalue()
     cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
-    # faces = detect_face(picture)
-    smile = detect_beard(picture)
-    st.write("Found {} beards!".format(len(smile)))
-    for (x,y,w,h) in smile:
+    faces = detect_face(picture)
+    # smile = detect_beard(picture)
+    st.write("Found {} faces!".format(len(faces)))
+    for (x,y,w,h) in faces:
         cv2.rectangle(cv2_img, (x,y), (x+w, y+h), (255,0,0), 2)
     st.image(cv2_img)
