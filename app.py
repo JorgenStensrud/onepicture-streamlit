@@ -11,14 +11,6 @@ def format_picture(picture):
     # cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
     return bytes_picture
 
-if picture:
-    st.download_button(
-        label = "Download",
-        data = format_picture(picture),
-        file_name = "image.jpeg",
-        mime = "image/jpeg"
-    )
-
 def detect_face(img):
     bytes_picture  = picture.getvalue()
     cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
@@ -28,14 +20,6 @@ def detect_face(img):
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     return faces
 
-def detect_beard(picture):
-    bytes_picture  = picture.getvalue()
-    cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
-
-    beard_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_beard.xml')
-    gray = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2GRAY)
-    beards = beard_cascade.detectMultiScale(gray, 1.3, 5)
-    return beards
 
 def detect_smile(picture):
     bytes_picture  = picture.getvalue()
@@ -54,12 +38,16 @@ def draw_rectange(picture, feature):
     return cv2_img 
 
 if picture:
+    st.download_button(
+    label = "Download",
+    data = format_picture(picture),
+    file_name = "image.jpeg",
+    mime = "image/jpeg"
+    )
+
     bytes_picture  = picture.getvalue()
     cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
-    # faces = detect_face(picture)
-    smiles = detect_smile(picture)
-    st.write("Found {} faces!".format(len(smiles)))
-    st.image(draw_rectange(picture, smiles), use_column_width=True)
-    # for (x,y,w,h) in smile:
-    #     cv2.rectangle(cv2_img, (x,y), (x+w, y+h), (255,0,0), 2)
-    # st.image(cv2_img)
+    faces = detect_face(picture)
+    st.write("Found {} faces!".format(len(faces)))
+    st.image(draw_rectange(picture, faces), use_column_width=True)
+   
