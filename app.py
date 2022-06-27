@@ -1,8 +1,9 @@
 import streamlit as st
 import numpy as np
 import cv2
+from streamlit_webrtc import webrtc_streamer
 
-
+webrtc_streamer(key="example")
 
 picture = st.camera_input("Camera Input")
 
