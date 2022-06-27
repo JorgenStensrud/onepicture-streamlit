@@ -43,7 +43,7 @@ def detect_smile(picture):
         smile = smile_cascade.detectMultiScale(roi_gray, 1.8, 22)
         for (sx,sy,sw,sh) in smile:
             cv2.rectangle(roi_color, (sx,sy), (sx+sw, sy+sh), (0,255,0), 2)
-    return cv2_img
+    return smile
 
 if picture:
     bytes_picture  = picture.getvalue()
