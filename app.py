@@ -28,6 +28,14 @@ def detect_face(img):
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     return faces
 
+def detect_beard(picture):
+    bytes_picture  = picture.getvalue()
+    cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
+
+    beard_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_beard.xml')
+    gray = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2GRAY)
+    beards = beard_cascade.detectMultiScale(gray, 1.3, 5)
+    return beards
 
 def detect_smile(picture):
     bytes_picture  = picture.getvalue()
@@ -37,12 +45,13 @@ def detect_smile(picture):
     gray = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2GRAY)
     smiles = smile_cascade.detectMultiScale(gray, 1.3, 5)
     return smiles
+    
 
 if picture:
     bytes_picture  = picture.getvalue()
     cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
     # faces = detect_face(picture)
-    smile = detect_smile(picture)
+    smile = detect_beard(picture)
     st.write("Found {} faces!".format(len(smile)))
     for (x,y,w,h) in smile:
         cv2.rectangle(cv2_img, (x,y), (x+w, y+h), (255,0,0), 2)
