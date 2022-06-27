@@ -52,7 +52,7 @@ if picture:
     cv2_img = cv2.imdecode(np.frombuffer(bytes_picture, np.uint8), cv2.IMREAD_COLOR)
     # faces = detect_face(picture)
     smile = detect_beard(picture)
-    st.write("Found {} faces!".format(len(smile)))
+    st.write("Found {} beards!".format(len(smile)))
     for (x,y,w,h) in smile:
         cv2.rectangle(cv2_img, (x,y), (x+w, y+h), (255,0,0), 2)
     st.image(cv2_img)
