@@ -41,8 +41,8 @@ def detect_smile(picture):
         roi_gray = gray[y:y+h, x:x+w]
         roi_color = cv2_img[y:y+h, x:x+w]
         smile = smile_cascade.detectMultiScale(roi_gray, 1.8, 22)
-        for (sx,sy,sw,sh) in smile:
-            cv2.rectangle(roi_color, (sx,sy), (sx+sw, sy+sh), (0,255,0), 2)
+        # for (sx,sy,sw,sh) in smile:
+        #     cv2.rectangle(roi_color, (sx,sy), (sx+sw, sy+sh), (0,255,0), 2)
     return smile
 
 if picture:
